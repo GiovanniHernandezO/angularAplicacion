@@ -19,9 +19,8 @@ export class StarComponent implements OnInit {
   constructor(
     private starS: StarService,
     private location: Location
-  ) { 
+  ) {
     starS.getTodosPersonajesTabla().subscribe(resp => {
-      console.log("fsf: " + resp);
       this.registro = resp;
       this.dtTrigger.next();
     })

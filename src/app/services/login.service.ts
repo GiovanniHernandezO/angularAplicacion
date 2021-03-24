@@ -15,7 +15,6 @@ export class LoginService {
   getCurrentUser() {
     try {
       const user = localStorage.getItem('user');
-      console.log('user: ' + user);
       return user;
     } catch (error) {
       console.log('error: ' + error);

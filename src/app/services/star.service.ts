@@ -14,7 +14,6 @@ export class StarService {
   ) { }
 
   getTodosPersonajesTabla(): Observable<Star> {
-    console.log("entra");
     return this.httpClient.get<Star>(environment.urlServicioStar);
   }
 }

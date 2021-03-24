@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private rickService : RickService
-  ) { 
+  ) {
     rickService.getTodosPersonajes().subscribe(resp => {
       this.todosPersonajes = resp;
     })
@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
     this.rickService.getPersonajeById(id).subscribe(resp => {
       this.personaje = resp;
       this.ocultar = false;
-      console.log(this.personaje);
     })
   }
 
