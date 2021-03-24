@@ -1,21 +1,29 @@
-<nav class="navbar navbar-expand-custom navbar-mainbg">
-    <a class="navbar-brand navbar-logo" [routerLink]="'/'">Proyecto Angular</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <i class="fas fa-bars text-white"></i>
+<nav class="navbar navbar-expand-sm   navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" 
+    data-toggle="collapse" data-target="#navbarTogglerDemo03"
+    aria-controls="navbarTogglerDemo03" 
+    aria-expanded="false" 
+    aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
-            <li class="nav-item active">
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item" [routerLinkActive]="'active'">
                 <a class="nav-link" [routerLink]="'home'"><i class="fas fa-tachometer-alt"></i>Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Acceso Premiumvis</a>
+            <li class="nav-item" [routerLinkActive]="'active'">
+                <a class="nav-link" [routerLink]="'premium'"><i class="far fa-address-book"></i>Acceso Vip</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" [routerLinkActive]="'active'">
                 <a class="nav-link" [routerLink]="'contacto'"><i class="far fa-clone"></i>Contacto</a>
             </li>
+            <li *ngIf="mostrarBotonIniciarSesion()" class="nav-item" [routerLinkActive]="'active'">
+                <a class="nav-link" [routerLink]="'login'"><i class="fas fa-sign-in-alt"></i>Iniciar sesión</a>
+            </li>
         </ul>
+        <div *ngIf="mostrarBotonCerrarSesion()">
+            <button class="btn btn-danger btn-xs" (click)="cerrarSession()">Cerrar sesión</button>
+        </div>
     </div>
 </nav>

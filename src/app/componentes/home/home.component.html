@@ -1,18 +1,54 @@
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" class="d-block w-50">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-12" style="text-align: center;">
+            <h1>Bienvenido al mundo de "The Rick and Morty"</h1>
         </div>
-        <div *ngFor="let persona of todosPersonajes"  class="carousel-item">
-            <img src="{{ persona.image }}" class="d-block w-50" alt="{{ persona.name }}">
+        <div class="col-md-12 col-md-offset-12" style="text-align: center;">
+            <p>A continuación podrás ver algunas imágenes random de rick and morty, haz click
+                en alguna de ellas y te mostrará la información del personaje
+            </p>
         </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Anterior</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Siguiente</span>
-    </a>
+</div>
+
+<div id="divContainer" class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-12">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                </ol>
+                <div class="carousel-inner align-center">
+                    <div class="carousel-item active">
+                        <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" (click)="mostrarDetalle(1)"
+                            class="d-block w-50">
+                    </div>
+                    <div *ngFor="let personaje of todosPersonajes" class="carousel-item">
+                        <img src="{{ personaje.image }}" (click)="mostrarDetalle(personaje.id)" class="d-block w-50"
+                            alt="{{ personaje.name }}">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon color" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="!ocultar">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-12">
+            <app-home-detalle (ocultarDetallePersonaje)="ocultarDetalle($event)" [personaje]="personaje"></app-home-detalle>
+        </div>
+    </div>
 </div>

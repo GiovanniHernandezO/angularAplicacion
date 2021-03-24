@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  urlServicio: 'https://rickandmortyapi.com/api/character/'
+  urlServicioRick: 'https://rickandmortyapi.com/api/character/',
+  urlServicioStar: 'https://swapi.dev/api/people/'
 };

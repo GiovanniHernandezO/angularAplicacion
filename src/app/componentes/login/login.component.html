@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="well well-sm"><br/>
+          <form [formGroup]="loginForm" (ngSubmit)="iniciarSession()">
+            <fieldset>
+              <legend class="text-center">Iniciar Sesión</legend>
+  
+              <div class="form-group">
+                <div class="col-md-12">
+                  <input formControlName="user" type="text" placeholder="usuario"
+                    class="form-control">
+                </div>
+                <div class="col-md-12">
+                  <div *ngIf="user.invalid && (user.dirty || user.touched)" class="alert alert-danger">
+                    <div *ngIf="user.errors.required">
+                      Requerido
+                    </div>
+                    <div *ngIf="user.errors.formularioValidaciones">
+                      {{ user.errors.formularioValidaciones.message }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <div class="col-md-12">
+                  <input formControlName="pass" type="password" placeholder="Password"
+                    class="form-control">
+                </div>
+                <div class="col-md-12">
+                  <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="alert alert-danger">
+                    <div *ngIf="pass.errors.required">
+                      Requerido
+                    </div>
+                    <div *ngIf="pass.errors.formularioValidaciones">
+                      {{ pass.errors.formularioValidaciones.message }}
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+              <div class="form-group">
+                <div class="col-md-12 text-right">
+                  <button [disabled]="loginForm.invalid" class="btn btn-primary btn-xs btn-block">Ingresar</button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

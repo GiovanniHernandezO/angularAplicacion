@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Home } from '../interfaces/home';
-import { environment } from '../../environments/environment'
+import { Personaje } from '../interfaces/personaje';
+import { Personajes } from '../interfaces/personajes';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,14 @@ export class RickService {
 
   getTodosPersonajes(): Observable<Home[]> {
     this.getPersonajesAleatorio();
-    console.log(environment.urlServicio + this.listaPersonajes)
-    return this.httpClient.get<Home[]>(environment.urlServicio + this.listaPersonajes);
+    return this.httpClient.get<Home[]>(environment.urlServicioRick + this.listaPersonajes);
+  }
+
+  getPersonajeById(id: number): Observable<Personaje> {
+    return this.httpClient.get<Personaje>(environment.urlServicioRick + id);
+  }
+
+  getTodosPersonajesTabla(): Observable<Personajes[]> {
+    return this.httpClient.get<Personajes[]>(environment.urlServicioRick);
   }
 }

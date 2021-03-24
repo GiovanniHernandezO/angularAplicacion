@@ -1,0 +1,33 @@
+<div *ngIf="existePersonaje()" class="row">
+    <div class="col-md-12 col-md-offset-12">
+        <h2 style="text-align: center;">Detalles del personaje</h2>
+        <div class="row">
+            <div class="col-md-6" style="text-align: right;">
+                <p>Nombre</p>
+                <p>Estado</p>
+                <p>Especie</p>
+                <p>Género</p>
+                <p>Última ubicación conocida</p>
+                <p>Visto por primera vez en</p>
+            </div>
+            <div class="col-md-6" style="text-align: left;">
+                <p>{{ personaje.name }}</p>
+                <p>{{ personaje.status | estado }} 
+                    <span [ngClass]="personaje.status == 'Alive' ? 'status_life' : 
+                    personaje.status == 'Dead' ? 'status_dead' : 'status_unknown' ">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                </p>
+                <p>{{ personaje.species }}</p>
+                <p>{{ personaje.gender | genero }}</p>
+                <p>{{ personaje.location.name }}</p>
+                <p>{{ personaje.origin.name }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="existePersonaje()" class="row" style="padding-top: 10px;">
+    <div class="col-md-12 col-md-offset-12 text-right">
+        <button (click)="ocultar()" class="btn btn-primary btn-lg">Ocultar</button>
+    </div>
+</div>

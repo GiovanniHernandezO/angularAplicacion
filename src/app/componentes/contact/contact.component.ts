@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { formularioValidaciones } from '../../directivas/validaciones.directive';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -8,26 +10,44 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class ContactComponent implements OnInit {
 
-  public nacionalidades: any[] = ['Chilena', 'Extranjera'];
+  public paises: any[] = [
+    'Chile',
+    'Argentina',
+    'Bolivia',
+    'Brasil',
+    'Colombia',
+    'Ecuador',
+    'Guyana',
+    'Paraguay',
+    'Perú',
+    'Suriname',
+    'Uruguay',
+    'Venezuela',
+  ];
 
   public contactoForm = new FormGroup({
-    nombre: new FormControl(),
-    email: new FormControl(),
-    mensaje: new FormControl(),
-    nacionalidad: new FormControl()
+    nombre: new FormControl('', [Validators.required, formularioValidaciones()]),
+    email: new FormControl('', [Validators.required, formularioValidaciones()]),
+    mensaje: new FormControl('', [Validators.required, formularioValidaciones()]),
+    pais: new FormControl('', [Validators.required])
   });
 
-  get nombre() { return this.contactoForm.get('nombre')};
-  get email() { return this.contactoForm.get('email')};
-  get mensaje() { return this.contactoForm.get('mensaje')};
+  get nombre() { return this.contactoForm.get('nombre') };
+  get email() { return this.contactoForm.get('email') };
+  get mensaje() { return this.contactoForm.get('mensaje') };
+  get pais() { return this.contactoForm.get('pais') };
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
-  enviarMensaje () {
+  enviarMensaje() {
     alert('Su mensaje ha sido enviado con éxito');
+    //aqui se deberia enviar la informacion por correo
+    this.router.navigate(['/home']);
   }
 
 }

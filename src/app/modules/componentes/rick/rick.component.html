@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-12" style="text-align: center;">
+            <h1>Bienvenido al mundo de "The Rick and Morty"</h1>
+        </div>
+        <div class="col-md-12 col-md-offset-12" style="text-align: center;">
+            <div class="col-md-12 col-md-offset-12" style="text-align: center;">
+                <p>A continuación podrás ver el listado de tus personajes favoritos y su información</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-12">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Especie</th>
+                        <th>Género</th>
+                        <th>Última ubicación conocida</th>
+                        <th>Visto por primera vez en</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let personaje of listadoPersonajes.results">
+                        <td>{{ personaje.name }}</td>
+                        <td>{{ personaje.status }}
+                            <span [ngClass]="personaje.status == 'Alive' ? 'status_life' : 
+                    personaje.status == 'Dead' ? 'status_dead' : 'status_unknown' ">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                        </td>
+                        <td>{{ personaje.species }}</td>
+                        <td>{{ personaje.gender }}</td>
+                        <td>{{ personaje.location.name }}</td>
+                        <td>{{ personaje.origin.name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-12 col-md-offset-12 text-right">
+            <button (click)="volver()" class="btn btn-primary btn-lg">Volver</button>
+        </div>
+    </div>
+</div>

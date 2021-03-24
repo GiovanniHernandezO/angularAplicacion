@@ -1,44 +1,99 @@
 <div class="container">
-	<div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="well well-sm">
-          <form [formGroup]="contactoForm" (onClick)="enviarMensaje()">
+  <div class="row">
+    <div class="col-md-12 col-md-offset-12">
+      <div class="well well-sm"><br/>
+        <form [formGroup]="contactoForm" (ngSubmit)="enviarMensaje()">
           <fieldset>
-            <legend class="text-center">Contact us</legend>
-    
-            <!-- Name input-->
+            <legend class="text-center">Contáctanos</legend>
             <div class="form-group">
-              <label class="col-md-3 control-label" for="name">Name</label>
-              <div class="col-md-9">
-                <input formControlName="nombre" type="text" placeholder="Your name" class="form-control">
+              <div class="col-md-12">
+                <p>Rellena el siguiente formulario para solicitar información de alguno
+                  de tus personajes favoritos
+                </p>
               </div>
             </div>
-    
-            <!-- Email input-->
+            
             <div class="form-group">
-              <label class="col-md-3 control-label" for="email">Your E-mail</label>
-              <div class="col-md-9">
-                <input id="email" name="email" type="text" placeholder="Your email" class="form-control">
+              <label class="col-md-12 control-label" for="nombre">Nombre <span class="fa fa-asterisk" style="color: red"></span></label>
+              <div class="col-md-12">
+                <input formControlName="nombre" type="text" placeholder="Ingresar tu nombre aquí..."
+                  class="form-control">
+              </div>
+              <div class="col-md-12">
+                <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+                  <div *ngIf="nombre.errors.required">
+                    Requerido
+                  </div>
+                  <div *ngIf="nombre.errors.formularioValidaciones">
+                    {{ nombre.errors.formularioValidaciones.message }}
+                  </div>
+                </div>
               </div>
             </div>
-    
-            <!-- Message body -->
+
             <div class="form-group">
-              <label class="col-md-3 control-label" for="message">Your message</label>
-              <div class="col-md-9">
-                <textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="5"></textarea>
+              <label class="col-md-12 control-label" for="email">E-mail <span class="fa fa-asterisk" style="color: red"></span></label>
+              <div class="col-md-12">
+                <input formControlName="email" type="email" placeholder="Ingresar tu e-mail aquí..."
+                  class="form-control">
+              </div>
+              <div class="col-md-12">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                  <div *ngIf="email.errors.required">
+                    Requerido
+                  </div>
+                  <div *ngIf="email.errors.formularioValidaciones">
+                    {{ email.errors.formularioValidaciones.message }}
+                  </div>
+                </div>
               </div>
             </div>
-    
-            <!-- Form actions -->
+
+            <div class="form-group">
+              <label class="col-md-12 control-label" for="email">País <span class="fa fa-asterisk" style="color: red"></span></label>
+              <div class="col-md-12">
+                <select class="form-control" formControlName="pais" required>
+                  <option *ngFor="let pais of paises" [value]="pais">
+                    <span [ngClass]="pais == 'Chile' ? 'colorChile' : 'colorOtros' ">{{ pais }}</span>
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-12">
+                <div *ngIf="pais.invalid && (pais.dirty || pais.touched)" class="alert alert-danger">
+                  <div *ngIf="pais.errors.required">
+                    Requerido
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 control-label" for="mensaje">Mensaje <span class="fa fa-asterisk" style="color: red"></span></label>
+              <div class="col-md-12">
+                <textarea class="form-control" formControlName="mensaje" 
+                placeholder="Ingresar tu mensaje aquí..."
+                  rows="5"></textarea>
+              </div>
+              <div class="col-md-12">
+                <div *ngIf="mensaje.invalid && (mensaje.dirty || mensaje.touched)" class="alert alert-danger">
+                  <div *ngIf="mensaje.errors.required">
+                    Requerido
+                  </div>
+                  <div *ngIf="mensaje.errors.formularioValidaciones">
+                    {{ mensaje.errors.formularioValidaciones.message }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="form-group">
               <div class="col-md-12 text-right">
-                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                <button [disabled]="contactoForm.invalid" class="btn btn-primary btn-lg">Enviar</button>
               </div>
             </div>
           </fieldset>
-          </form>
-        </div>
+        </form>
       </div>
-	</div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-12" style="text-align: center;">
+            <h1>Bienvenido al mundo de "Star wars"</h1>
+        </div>
+        <div class="col-md-12 col-md-offset-12" style="text-align: center;">
+            <p>A continuación podrás ver el listado de tus personajes favoritos y su información</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-12">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Especie</th>
+                        <th>Altura</th>
+                        <th>Color de pelo</th>
+                        <th>Mundo natal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let personaje of registro.results">
+                        <td>{{ personaje.name }}</td>
+                        <td>{{ personaje.species }}</td>
+                        <td>{{ personaje.height }}</td>
+                        <td>{{ personaje.hair_color }}</td>
+                        <td>{{ personaje.homeworld }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-12 col-md-offset-12 text-right">
+            <button (click)="volver()" class="btn btn-primary btn-lg">Volver</button>
+        </div>
+    </div>
+</div>
